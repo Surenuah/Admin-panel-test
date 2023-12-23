@@ -1,4 +1,4 @@
-import accountImage from "../../assets/sidebar/Account_Image.svg";
+import accountImage from "../../assets/sidebar/Account_Image.png";
 import diagramIcon from "../../assets/sidebar/Diagram_Icon.svg";
 import accountIcon from "../../assets/sidebar/Account_Icon.svg";
 import todoListIcon from "../../assets/sidebar/Todo_List_Icon.svg";
@@ -19,51 +19,51 @@ export const Sidebar = () => {
       style={{ flex: "1" }}
     >
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={logo} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={accountImage} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={diagramIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={accountIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={todoListIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={messageIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={imagesIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={usersIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={notesIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={dollarIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={coinsIcon} alt="" />}
       />
       <Button
-        className="bg-white border-none"
+        className="bg-transparent border-none"
         icon={<img src={exitIcon} alt="" />}
       />
     </div>

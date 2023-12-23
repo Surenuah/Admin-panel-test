@@ -7,7 +7,7 @@ export const UserList = () => {
       className="bg-gray-100 flex flex-col items-center justify-start"
       style={{ flex: "25" }}
     >
-      <div className="bg-white rounded-[10px] mt-4 w-[90%]">
+      <div className="bg-white rounded-[10px] mt-7 w-[80%]">
         <SearchAndAddUserMolecule />
         <UserCard />
         <UserCard />
