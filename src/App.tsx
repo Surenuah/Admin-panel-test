@@ -1,9 +1,9 @@
-function App() {
-  return (
-    <span className="">
-        asd
-    </span>
-  )
-}
+import { Sidebar } from "@/components/molecules/Sidebar.tsx";
 
-export default App
+export const App = () => {
+  return (
+    <div className="flex !bg-[#9494A0]">
+      <Sidebar />
+    </div>
+  );
+};
