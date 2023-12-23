@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import searchIcon from "../../assets/Search_Icon.svg";
+import searchIcon from "../../assets/common/Search_Icon.svg";
 
 export const SearchEmailInput = () => {
   return (
