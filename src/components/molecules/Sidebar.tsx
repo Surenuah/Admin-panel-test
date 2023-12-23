@@ -14,57 +14,55 @@ import { Button } from "antd";
 
 export const Sidebar = () => {
   return (
-    <div className="flex-1">
-      <div className="flex flex-col gap-10 ml-10 bg-white">
-        <Button
-          className="bg-white border-none"
-          icon={<img src={logo} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={accountImage} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={diagramIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={accountIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={todoListIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={messageIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={imagesIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={usersIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={notesIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={dollarIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={coinsIcon} alt="" />}
-        />
-        <Button
-          className="bg-white border-none"
-          icon={<img src={exitIcon} alt="" />}
-        />
-      </div>
+    <div className="flex flex-col gap-10 ml-10 bg-white">
+      <Button
+        className="bg-white border-none"
+        icon={<img src={logo} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={accountImage} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={diagramIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={accountIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={todoListIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={messageIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={imagesIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={usersIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={notesIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={dollarIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={coinsIcon} alt="" />}
+      />
+      <Button
+        className="bg-white border-none"
+        icon={<img src={exitIcon} alt="" />}
+      />
     </div>
   );
 };
