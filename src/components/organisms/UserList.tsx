@@ -1,5 +1,5 @@
 import { SearchAndAddUserMolecule } from "@/components/molecules/SearchAndAddUserMolecule.tsx";
-import { UserCard } from "@/components/atoms/UserCard.tsx";
+import { UserCard } from "@/components/molecules/UserCard.tsx";
 import { useQuery } from "react-query";
 import { adminPanelApi } from "../../api/adminPanel.tsx";
 

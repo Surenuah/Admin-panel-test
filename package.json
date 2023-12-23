@@ -14,10 +14,18 @@
     "@types/node": "^20.10.5",
     "antd": "^5.12.5",
     "axios": "^1.6.2",
+    "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "twin.macro": "^3.4.0"
+  },
+  "babelMacros": {
+    "twin": {
+      "config": "./src/tailwind.config.js",
+      "preset": "styled-components"
+    }
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
