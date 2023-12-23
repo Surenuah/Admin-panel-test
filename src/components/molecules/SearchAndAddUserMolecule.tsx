@@ -1,10 +1,14 @@
 import Title from "antd/es/typography/Title";
 import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
 import { AddUserButton } from "@/components/atoms/AddUserButton.tsx";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
 
-export const SearchAndAddUserMolecule = () => {
+interface Props {
+  setSearchedEmail: (e: string) => void;
+}
+
+export const SearchAndAddUserMolecule: FC<Props> = ({ setSearchedEmail }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -13,7 +17,7 @@ export const SearchAndAddUserMolecule = () => {
         Команда
       </Title>
       <div className="flex justify-end w-[80%]">
-        <SearchEmailInput />
+        <SearchEmailInput setSearchedEmail={setSearchedEmail} />
         <AddUserButton onClick={() => setIsModalOpen(true)} />
         <SendInviteModal
           isModalOpen={isModalOpen}

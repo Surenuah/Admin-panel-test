@@ -5,9 +5,10 @@ import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   allUsers?: UsersT[];
+  searchedEmail: string;
 }
 
-export const UserCard: FC<Props> = ({ allUsers }) => {
+export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
   const sortedUsers = allUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
       return -1;
@@ -19,9 +20,13 @@ export const UserCard: FC<Props> = ({ allUsers }) => {
     return 0;
   });
 
+  const filteredUsers = sortedUsers?.filter((user) =>
+    user.email.toLowerCase().includes(searchedEmail.toLowerCase()),
+  );
+
   return (
     <>
-      {sortedUsers?.map((user, index) => (
+      {filteredUsers?.map((user, index) => (
         <div key={index} className="flex p-6 hover:bg-gray-100">
           <img
             className="rounded-[50%] w-[64px] h-[64px]"

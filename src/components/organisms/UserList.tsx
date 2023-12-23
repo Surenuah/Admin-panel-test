@@ -2,8 +2,11 @@ import { SearchAndAddUserMolecule } from "@/components/molecules/SearchAndAddUse
 import { UserCard } from "@/components/molecules/UserCard.tsx";
 import { useQuery } from "react-query";
 import { adminPanelApi } from "../../api/adminPanel.tsx";
+import { useState } from "react";
 
 export const UserList = () => {
+  const [searchedEmail, setSearchedEmail] = useState("");
+
   const { data: allUsers } = useQuery(["data/users"], () =>
     adminPanelApi.getAllUsers().then((response) => response.data),
   );
@@ -14,8 +17,8 @@ export const UserList = () => {
       style={{ flex: "25" }}
     >
       <div className="bg-white rounded-[10px] mt-12 w-[80%]">
-        <SearchAndAddUserMolecule />
-        <UserCard allUsers={allUsers} />
+        <SearchAndAddUserMolecule setSearchedEmail={setSearchedEmail} />
+        <UserCard allUsers={allUsers} searchedEmail={searchedEmail} />
       </div>
     </div>
   );
