@@ -29,6 +29,13 @@ export const AdminPanelPage = () => {
 
     if (isEmailUnique) {
       setAddedUsers((prevUsers) => [...prevUsers, newUser]);
+
+      notification.success({
+        message: "Успех",
+        description: `Пользователь с email ${editUserPermissions.email} ${
+          editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
+        }`,
+      });
     } else {
       notification.error({
         message: "Ошибка",

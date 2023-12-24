@@ -37,13 +37,6 @@ export const SendInviteForm: FC<Props> = ({
         }
 
         formik.resetForm();
-
-        notification.success({
-          message: "Успех",
-          description: `Пользователь с email ${formik.values.email} ${
-            editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
-          }`,
-        });
       } catch (err) {
         notification.error({
           message: "Ошибка",
