@@ -9,7 +9,6 @@ export const AdminPanelPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchedEmail, setSearchedEmail] = useState("");
   const [allUsers, setAllUsers] = useState<UsersT[]>([]);
-  const [displayedUsers, setDisplayedUsers] = useState<UsersT[]>([]);
   const [editUserPermissions, setEditUserPermissions] = useState<{
     email: string;
     permissions: string[];
@@ -40,21 +39,13 @@ export const AdminPanelPage = () => {
     setAllUsers(initialAllUsers || []);
   }, [initialAllUsers]);
 
-  useEffect(() => {
-    setDisplayedUsers(
-      allUsers.filter((user) =>
-        user.email.toLowerCase().includes(searchedEmail.toLowerCase()),
-      ),
-    );
-  }, [allUsers, searchedEmail]);
-
   return (
     <div className={`flex w-screen min-h-screen`}>
       <Sidebar />
       <UserList
         searchedEmail={searchedEmail}
         setSearchedEmail={setSearchedEmail}
-        displayedUsers={displayedUsers}
+        allUsers={allUsers}
         sendInviteToUser={sendInviteToUser}
         deleteUser={deleteUser}
         isModalOpen={isModalOpen}
