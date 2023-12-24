@@ -18,6 +18,12 @@ export const UserList = () => {
     setAllUsers((prevUsers) => [...prevUsers, newUser]);
   };
 
+  const deleteUser = (email: string) => {
+    setAllUsers((prevUsers) =>
+      prevUsers.filter((user) => user.email !== email),
+    );
+  };
+
   useEffect(() => {
     setAllUsers(initialAllUsers || []);
   }, [initialAllUsers]);
@@ -40,7 +46,11 @@ export const UserList = () => {
           setSearchedEmail={setSearchedEmail}
           onSendInvite={sendInviteToUser}
         />
-        <UserCard allUsers={displayedUsers} searchedEmail={searchedEmail} />
+        <UserCard
+          allUsers={displayedUsers}
+          searchedEmail={searchedEmail}
+          onDeleteUser={deleteUser}
+        />
       </div>
     </div>
   );

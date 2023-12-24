@@ -3,30 +3,42 @@ import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
 
 interface Props {
-  userIndex: number;
+  userEmail: string;
+  onDeleteUser: (value: string) => void;
 }
 
-export const UserActionsPopover: FC<Props> = ({ userIndex }) => {
-  const [selectedUserIndex, setSelectedUserIndex] = useState<number | null>();
+export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
+  const [selectedUserIndex, setSelectedUserIndex] = useState<string>();
 
   const handleOpenChange = (visible: boolean) => {
     if (visible) {
-      setSelectedUserIndex(userIndex);
+      setSelectedUserIndex(userEmail);
     } else {
-      setSelectedUserIndex(null);
+      setSelectedUserIndex(undefined);
     }
+  };
+
+  const handleDeleteUser = () => {
+    onDeleteUser(userEmail);
   };
 
   return (
     <Popover
       trigger="click"
-      open={userIndex === selectedUserIndex}
+      open={userEmail === selectedUserIndex}
       onOpenChange={handleOpenChange}
       content={
-        <div className="flex flex-col p-2">
+        <div className="flex flex-col items-start p-2">
           <span className="cursor-pointer">Изменить права доступа</span>
           <span className="mt-2 cursor-pointer">Отправить код повторно</span>
-          <span className="mt-2 text-[#9494A0] cursor-pointer">Удалить</span>
+          <Button
+            className="bg-transparent border-none outline-none flex items-center justify-center"
+            onClick={handleDeleteUser}
+          >
+            <span className="mt-2 text-[#9494A0] cursor-pointer ml-[-12px]">
+              Удалить
+            </span>
+          </Button>
         </div>
       }
     >

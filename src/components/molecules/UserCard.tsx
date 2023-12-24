@@ -6,9 +6,14 @@ import { UserActionsPopover } from "@/components/atoms/UserActionsPopover.tsx";
 interface Props {
   allUsers?: UsersT[];
   searchedEmail: string;
+  onDeleteUser: (value: string) => void;
 }
 
-export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
+export const UserCard: FC<Props> = ({
+  allUsers,
+  searchedEmail,
+  onDeleteUser,
+}) => {
   const sortedUsers = allUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
       return -1;
@@ -58,7 +63,10 @@ export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
                 ))}
               </div>
             </div>
-            <UserActionsPopover userIndex={userIndex} />
+            <UserActionsPopover
+              userEmail={user.email}
+              onDeleteUser={onDeleteUser}
+            />
           </div>
         </div>
       ))}
