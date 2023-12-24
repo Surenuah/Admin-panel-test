@@ -5,8 +5,6 @@ import { adminPanelApi } from "../../api/adminPanel.tsx";
 import { useEffect, useState } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 
-// ... (ваш импорт)
-
 export const UserList = () => {
   const [searchedEmail, setSearchedEmail] = useState("");
   const [allUsers, setAllUsers] = useState<UsersT[]>([]);

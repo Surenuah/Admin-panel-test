@@ -1,8 +1,7 @@
-import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
-import { Button } from "antd";
 import { FC } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 import accountIcon from "../../assets/sidebar/Account_Icon.svg";
+import { UserActionsPopover } from "@/components/atoms/UserActionsPopover.tsx";
 
 interface Props {
   allUsers?: UsersT[];
@@ -27,8 +26,8 @@ export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
 
   return (
     <>
-      {filteredUsers?.map((user, index) => (
-        <div key={index} className="flex p-6 hover:bg-gray-100">
+      {filteredUsers?.map((user, userIndex) => (
+        <div key={userIndex} className="flex p-6 hover:bg-gray-100">
           <img
             className="rounded-[50%] w-[64px] h-[64px]"
             src={user.image ?? accountIcon}
@@ -59,10 +58,7 @@ export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
                 ))}
               </div>
             </div>
-            <Button
-              className="border-none bg-transparent flex justify-center"
-              icon={<img src={moreUserCardIcon} alt="" />}
-            />
+            <UserActionsPopover userIndex={userIndex} />
           </div>
         </div>
       ))}
