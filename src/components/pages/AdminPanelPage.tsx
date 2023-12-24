@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 import { useQuery } from "react-query";
 import { adminPanelApi } from "../../api/adminPanel.tsx";
+import { notification } from "antd";
 
 export const AdminPanelPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +23,18 @@ export const AdminPanelPage = () => {
   );
 
   const sendInviteToUser = (newUser: UsersT) => {
-    setAddedUsers((prevUsers) => [...prevUsers, newUser]);
+    const isEmailUnique = !addedUsers.some(
+      (user) => user.email.trim() === newUser.email.trim(),
+    );
+
+    if (isEmailUnique) {
+      setAddedUsers((prevUsers) => [...prevUsers, newUser]);
+    } else {
+      notification.error({
+        message: "Ошибка",
+        description: "Пользователь с таким email уже существует",
+      });
+    }
   };
 
   const deleteUser = (email: string) => {
