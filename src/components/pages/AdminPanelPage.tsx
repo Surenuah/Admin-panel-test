@@ -8,7 +8,7 @@ import { adminPanelApi } from "../../api/adminPanel.tsx";
 export const AdminPanelPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchedEmail, setSearchedEmail] = useState("");
-  const [allUsers, setAllUsers] = useState<UsersT[]>([]);
+  const [addedUsers, setAddedUsers] = useState<UsersT[]>([]);
   const [editUserPermissions, setEditUserPermissions] = useState<{
     email: string;
     permissions: string[];
@@ -17,16 +17,16 @@ export const AdminPanelPage = () => {
     permissions: [],
   });
 
-  const { data: initialAllUsers } = useQuery(["data/users"], () =>
+  const { data: allUsers } = useQuery(["data/users"], () =>
     adminPanelApi.getAllUsers().then((response) => response.data),
   );
 
   const sendInviteToUser = (newUser: UsersT) => {
-    setAllUsers((prevUsers) => [...prevUsers, newUser]);
+    setAddedUsers((prevUsers) => [...prevUsers, newUser]);
   };
 
   const deleteUser = (email: string) => {
-    setAllUsers((prevUsers) =>
+    setAddedUsers((prevUsers) =>
       prevUsers.filter((user) => user.email !== email),
     );
   };
@@ -36,8 +36,8 @@ export const AdminPanelPage = () => {
   };
 
   useEffect(() => {
-    setAllUsers(initialAllUsers || []);
-  }, [initialAllUsers]);
+    setAddedUsers(allUsers || []);
+  }, [allUsers]);
 
   return (
     <div className={`flex w-screen min-h-screen`}>
@@ -45,7 +45,7 @@ export const AdminPanelPage = () => {
       <UserList
         searchedEmail={searchedEmail}
         setSearchedEmail={setSearchedEmail}
-        allUsers={allUsers}
+        addedUsers={addedUsers}
         sendInviteToUser={sendInviteToUser}
         deleteUser={deleteUser}
         isModalOpen={isModalOpen}

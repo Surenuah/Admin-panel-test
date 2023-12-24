@@ -6,7 +6,7 @@ import { FC } from "react";
 interface Props {
   searchedEmail: string;
   setSearchedEmail: (value: string) => void;
-  allUsers: UsersT[];
+  addedUsers: UsersT[];
   sendInviteToUser?: (value: UsersT) => void;
   deleteUser?: (value: string) => void;
   isModalOpen: boolean;
@@ -21,7 +21,7 @@ interface Props {
 export const UserList: FC<Props> = ({
   searchedEmail,
   setSearchedEmail,
-  allUsers,
+  addedUsers,
   sendInviteToUser,
   deleteUser,
   isModalOpen,
@@ -43,7 +43,7 @@ export const UserList: FC<Props> = ({
           editUserPermissions={editUserPermissions}
         />
         <UserCard
-          allUsers={allUsers}
+          addedUsers={addedUsers}
           searchedEmail={searchedEmail}
           onDeleteUser={deleteUser}
           setIsModalOpen={setIsModalOpen}

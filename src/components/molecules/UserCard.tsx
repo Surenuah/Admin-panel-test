@@ -4,7 +4,7 @@ import accountIcon from "../../assets/sidebar/Account_Icon.svg";
 import { UserActionsPopover } from "@/components/molecules/UserActionsPopover.tsx";
 
 interface Props {
-  allUsers?: UsersT[];
+  addedUsers?: UsersT[];
   searchedEmail: string;
   onDeleteUser?: (value: string) => void;
   setIsModalOpen: (value: boolean) => void;
@@ -12,13 +12,13 @@ interface Props {
 }
 
 export const UserCard: FC<Props> = ({
-  allUsers,
+  addedUsers,
   searchedEmail,
   onDeleteUser,
   setEditUserPermissions,
   setIsModalOpen,
 }) => {
-  const sortedUsers = allUsers?.slice().sort((a, b) => {
+  const sortedUsers = addedUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
       return -1;
     }
