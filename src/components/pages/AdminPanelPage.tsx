@@ -31,6 +31,32 @@ export const AdminPanelPage = () => {
     );
   };
 
+  const editUser = () => {
+    const editedUserIndex = addedUsers.findIndex(
+      (user) => user.email === editUserPermissions.email,
+    );
+
+    if (editedUserIndex !== -1) {
+      const updatedUser = {
+        ...addedUsers[editedUserIndex],
+        permissions: editUserPermissions.permissions,
+      };
+
+      setAddedUsers((prevUsers) => [
+        ...prevUsers.slice(0, editedUserIndex),
+        updatedUser,
+        ...prevUsers.slice(editedUserIndex + 1),
+      ]);
+
+      setEditUserPermissions({
+        email: "",
+        permissions: [],
+      });
+
+      setEmailAndPermissions("", []);
+    }
+  };
+
   const setEmailAndPermissions = (email: string, permissions: string[]) => {
     setEditUserPermissions({ email, permissions });
   };
@@ -52,6 +78,7 @@ export const AdminPanelPage = () => {
         setIsModalOpen={setIsModalOpen}
         editUserPermissions={editUserPermissions}
         setEditUserPermissions={setEmailAndPermissions}
+        onEditUser={editUser}
       />
     </div>
   );

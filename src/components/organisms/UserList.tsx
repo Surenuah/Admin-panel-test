@@ -16,6 +16,7 @@ interface Props {
     permissions: string[];
   };
   setEditUserPermissions: (email: string, permissions: string[]) => void;
+  onEditUser: () => void;
 }
 
 export const UserList: FC<Props> = ({
@@ -28,6 +29,7 @@ export const UserList: FC<Props> = ({
   setIsModalOpen,
   editUserPermissions,
   setEditUserPermissions,
+  onEditUser,
 }) => {
   return (
     <div
@@ -41,6 +43,7 @@ export const UserList: FC<Props> = ({
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           editUserPermissions={editUserPermissions}
+          onEditUser={onEditUser}
         />
         <UserCard
           addedUsers={addedUsers}

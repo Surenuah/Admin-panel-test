@@ -3,7 +3,7 @@ import { EmailInput } from "@/components/atoms/EmailInput.tsx";
 import { PermissionsSelect } from "@/components/atoms/PermissionsSelect.tsx";
 import { useFormik } from "formik";
 import Title from "antd/es/typography/Title";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
@@ -13,12 +13,14 @@ interface Props {
     email: string;
     permissions: string[];
   };
+  onEditUser: () => void;
 }
 
 export const SendInviteForm: FC<Props> = ({
   onSendInvite,
   setIsModalOpen,
   editUserPermissions,
+  onEditUser,
 }) => {
   const formik = useFormik<UsersT>({
     initialValues: {
@@ -28,24 +30,37 @@ export const SendInviteForm: FC<Props> = ({
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        onSendInvite?.(values);
+        if (editUserPermissions) {
+          onEditUser();
+        } else {
+          onSendInvite?.(values);
+        }
 
         formik.resetForm();
 
         notification.success({
           message: "Успех",
-          description: `Пользователь с email ${formik.values.email} успешно добавлен!`,
+          description: `Пользователь с email ${formik.values.email} ${
+            editUserPermissions ? "успешно изменен!" : "успешно добавлен!"
+          }`,
         });
       } catch (err) {
         notification.error({
           message: "Ошибка",
-          description: `Не удалось добавить пользователя.`,
+          description: `Не удалось ${
+            editUserPermissions ? "изменить" : "добавить"
+          } пользователя.`,
         });
       }
 
       setIsModalOpen(false);
     },
   });
+
+  useEffect(() => {
+    formik.setFieldValue("email", editUserPermissions.email);
+    formik.setFieldValue("permissions", editUserPermissions.permissions);
+  }, [editUserPermissions]);
 
   return (
     <div className="p-11">

@@ -12,6 +12,7 @@ interface Props {
     email: string;
     permissions: string[];
   };
+  onEditUser: () => void;
 }
 
 const Modal = styled(ModalAntd)`
@@ -35,6 +36,7 @@ export const SendInviteModal: FC<Props> = ({
   setIsModalOpen,
   onSendInvite,
   editUserPermissions,
+  onEditUser,
 }) => {
   return (
     <Modal
@@ -49,6 +51,7 @@ export const SendInviteModal: FC<Props> = ({
         onSendInvite={onSendInvite}
         setIsModalOpen={setIsModalOpen}
         editUserPermissions={editUserPermissions}
+        onEditUser={onEditUser}
       />
     </Modal>
   );

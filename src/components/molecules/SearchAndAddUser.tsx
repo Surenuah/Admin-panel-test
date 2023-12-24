@@ -14,6 +14,7 @@ interface Props {
     email: string;
     permissions: string[];
   };
+  onEditUser: () => void;
 }
 
 export const SearchAndAddUser: FC<Props> = ({
@@ -22,6 +23,7 @@ export const SearchAndAddUser: FC<Props> = ({
   isModalOpen,
   setIsModalOpen,
   editUserPermissions,
+  onEditUser,
 }) => {
   return (
     <div className="flex justify-between p-5 pb-2 mx-3">
@@ -36,6 +38,7 @@ export const SearchAndAddUser: FC<Props> = ({
           setIsModalOpen={setIsModalOpen}
           onSendInvite={onSendInvite}
           editUserPermissions={editUserPermissions}
+          onEditUser={onEditUser}
         />
       </div>
     </div>
