@@ -73,6 +73,13 @@ export const AdminPanelPage = () => {
       });
 
       setEmailAndPermissions("", []);
+
+      notification.success({
+        message: "Успех",
+        description: `Пользователь с email ${editUserPermissions.email} ${
+          editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
+        }`,
+      });
     }
   };
 
