@@ -3,7 +3,7 @@ import { UserList } from "@/components/organisms/UserList.tsx";
 
 export const AdminPanelPage = () => {
   return (
-    <div className="flex w-screen h-screen">
+    <div className="flex w-screen h-full">
       <Sidebar />
       <UserList />
     </div>

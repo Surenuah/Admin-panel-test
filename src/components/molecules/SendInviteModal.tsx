@@ -2,10 +2,12 @@ import { Modal as ModalAntd } from "antd";
 import { FC } from "react";
 import { SendInviteForm } from "@/components/molecules/SendInviteForm.tsx";
 import styled from "@emotion/styled";
+import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
+  onSendInvite: (values: UsersT) => void;
 }
 
 const Modal = styled(ModalAntd)`
@@ -24,7 +26,11 @@ const Modal = styled(ModalAntd)`
   }
 `;
 
-export const SendInviteModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) => {
+export const SendInviteModal: FC<Props> = ({
+  isModalOpen,
+  setIsModalOpen,
+  onSendInvite,
+}) => {
   return (
     <Modal
       className="flex flex-col items-center justify-center"
@@ -34,7 +40,7 @@ export const SendInviteModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) => {
       onCancel={() => setIsModalOpen(false)}
       footer={false}
     >
-      <SendInviteForm />
+      <SendInviteForm onSendInvite={onSendInvite} />
     </Modal>
   );
 };

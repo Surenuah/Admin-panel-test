@@ -1,6 +1,6 @@
 export type UsersT = {
-  name: string;
+  name?: string;
   email: string;
   permissions: string[];
-  image: string;
+  image?: string;
 };

@@ -2,6 +2,7 @@ import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
 import { Button } from "antd";
 import { FC } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
+import accountIcon from "../../assets/sidebar/Account_Icon.svg";
 
 interface Props {
   allUsers?: UsersT[];
@@ -30,13 +31,15 @@ export const UserCard: FC<Props> = ({ allUsers, searchedEmail }) => {
         <div key={index} className="flex p-6 hover:bg-gray-100">
           <img
             className="rounded-[50%] w-[64px] h-[64px]"
-            src={user.image}
+            src={user.image ?? accountIcon}
             alt=""
           />
           <div className="flex flex-grow justify-between ml-2">
             <div className="flex flex-col">
               <div className="flex">
-                <span className="font-semibold">{user.name}</span>
+                <span className="font-semibold">
+                  {user.name ?? "Пользователь"}
+                </span>
                 <span className="text-[#9494A0] ml-2">{user.email}</span>
               </div>
               <div className="flex">

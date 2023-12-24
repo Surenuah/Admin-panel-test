@@ -3,12 +3,17 @@ import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
 import { AddUserButton } from "@/components/atoms/AddUserButton.tsx";
 import { FC, useState } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
+import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   setSearchedEmail: (e: string) => void;
+  onSendInvite: (values: UsersT) => void;
 }
 
-export const SearchAndAddUserMolecule: FC<Props> = ({ setSearchedEmail }) => {
+export const SearchAndAddUserMolecule: FC<Props> = ({
+  setSearchedEmail,
+  onSendInvite,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -22,6 +27,7 @@ export const SearchAndAddUserMolecule: FC<Props> = ({ setSearchedEmail }) => {
         <SendInviteModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          onSendInvite={onSendInvite}
         />
       </div>
     </div>
