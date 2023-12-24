@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 import accountIcon from "../../assets/sidebar/Account_Icon.svg";
-import { UserActionsPopover } from "@/components/atoms/UserActionsPopover.tsx";
+import { UserActionsPopover } from "@/components/molecules/UserActionsPopover.tsx";
 
 interface Props {
   allUsers?: UsersT[];

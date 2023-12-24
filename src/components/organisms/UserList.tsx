@@ -1,4 +1,4 @@
-import { SearchAndAddUserMolecule } from "@/components/molecules/SearchAndAddUserMolecule.tsx";
+import { SearchAndAddUser } from "@/components/molecules/SearchAndAddUser.tsx";
 import { UserCard } from "@/components/molecules/UserCard.tsx";
 import { UsersT } from "../../types/AdminPanel.ts";
 import { FC } from "react";
@@ -35,7 +35,7 @@ export const UserList: FC<Props> = ({
       style={{ flex: "25" }}
     >
       <div className="bg-white rounded-[10px] mt-12 w-[80%]">
-        <SearchAndAddUserMolecule
+        <SearchAndAddUser
           setSearchedEmail={setSearchedEmail}
           onSendInvite={sendInviteToUser}
           isModalOpen={isModalOpen}

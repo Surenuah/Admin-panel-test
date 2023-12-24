@@ -16,7 +16,7 @@ interface Props {
   };
 }
 
-export const SearchAndAddUserMolecule: FC<Props> = ({
+export const SearchAndAddUser: FC<Props> = ({
   setSearchedEmail,
   onSendInvite,
   isModalOpen,
