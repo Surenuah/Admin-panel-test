@@ -1,4 +1,4 @@
-import { Button, Form } from "antd";
+import { Button, Form, notification } from "antd";
 import { EmailInput } from "@/components/atoms/EmailInput.tsx";
 import { PermissionsSelect } from "@/components/atoms/PermissionsSelect.tsx";
 import { useFormik } from "formik";
@@ -8,16 +8,31 @@ import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   onSendInvite: (values: UsersT) => void;
+  setIsModalOpen: (value: boolean) => void;
 }
 
-export const SendInviteForm: FC<Props> = ({ onSendInvite }) => {
+export const SendInviteForm: FC<Props> = ({ onSendInvite, setIsModalOpen }) => {
   const formik = useFormik<UsersT>({
     initialValues: {
       email: "",
       permissions: [],
     },
     onSubmit: (values) => {
-      onSendInvite(values);
+      try {
+        onSendInvite(values);
+
+        notification.success({
+          message: "Успех",
+          description: `Пользователь с email ${formik.values.email} успешно добавлен!`,
+        });
+      } catch (err) {
+        notification.error({
+          message: "Ошибка",
+          description: `Не удалось добавить пользователя.`,
+        });
+      }
+
+      setIsModalOpen(false);
     },
   });
 

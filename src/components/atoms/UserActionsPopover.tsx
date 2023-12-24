@@ -1,14 +1,10 @@
-import { Button, Popover } from "antd";
+import { Button, notification, Popover } from "antd";
 import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
-import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   userEmail: string;
   onDeleteUser: (value: string) => void;
-  isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
-  onSendInvite: (values: UsersT) => void;
 }
 
 export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
@@ -23,7 +19,19 @@ export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
   };
 
   const handleDeleteUser = () => {
-    onDeleteUser(userEmail);
+    try {
+      onDeleteUser(userEmail);
+
+      notification.success({
+        message: "Успех",
+        description: `Пользователь с email ${userEmail} успешно удален!`,
+      });
+    } catch (err) {
+      notification.error({
+        message: "Ошибка",
+        description: `Не удалось удалить пользователя.`,
+      });
+    }
   };
 
   return (

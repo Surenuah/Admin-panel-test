@@ -7,18 +7,12 @@ interface Props {
   allUsers?: UsersT[];
   searchedEmail: string;
   onDeleteUser: (value: string) => void;
-  isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
-  onSendInvite: (values: UsersT) => void;
 }
 
 export const UserCard: FC<Props> = ({
   allUsers,
   searchedEmail,
   onDeleteUser,
-  isModalOpen,
-  setIsModalOpen,
-  onSendInvite,
 }) => {
   const sortedUsers = allUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
@@ -72,9 +66,6 @@ export const UserCard: FC<Props> = ({
             <UserActionsPopover
               userEmail={user.email}
               onDeleteUser={onDeleteUser}
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              onSendInvite={onSendInvite}
             />
           </div>
         </div>

@@ -38,9 +38,6 @@ export const UserList: FC<Props> = ({
           allUsers={displayedUsers}
           searchedEmail={searchedEmail}
           onDeleteUser={deleteUser}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          onSendInvite={sendInviteToUser}
         />
       </div>
     </div>

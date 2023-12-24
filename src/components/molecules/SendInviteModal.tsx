@@ -40,7 +40,10 @@ export const SendInviteModal: FC<Props> = ({
       onCancel={() => setIsModalOpen(false)}
       footer={false}
     >
-      <SendInviteForm onSendInvite={onSendInvite} />
+      <SendInviteForm
+        onSendInvite={onSendInvite}
+        setIsModalOpen={setIsModalOpen}
+      />
     </Modal>
   );
 };
