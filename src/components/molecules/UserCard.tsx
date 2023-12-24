@@ -6,13 +6,17 @@ import { UserActionsPopover } from "@/components/atoms/UserActionsPopover.tsx";
 interface Props {
   allUsers?: UsersT[];
   searchedEmail: string;
-  onDeleteUser: (value: string) => void;
+  onDeleteUser?: (value: string) => void;
+  setIsModalOpen: (value: boolean) => void;
+  setEditUserPermissions?: (email: string, permissions: string[]) => void;
 }
 
 export const UserCard: FC<Props> = ({
   allUsers,
   searchedEmail,
   onDeleteUser,
+  setEditUserPermissions,
+  setIsModalOpen,
 }) => {
   const sortedUsers = allUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
@@ -47,25 +51,30 @@ export const UserCard: FC<Props> = ({
                 <span className="text-[#9494A0] ml-2">{user.email}</span>
               </div>
               <div className="flex">
-                {user.permissions.map((permission) => (
-                  <span
-                    className={`border rounded-[10px]
+                {user.permissions.map((permission) => {
+                  return (
+                    <span
+                      className={`border rounded-[10px]
                       ${
                         permission === "Администратор"
                           ? "border-[#5A57FF] text-[#5A57FF] font-normal"
                           : "border-[#C1C1CB] text-[#9494A0] font-normal"
                       }w-[70%] text-center py-1 px-2 mt-2 mr-2
                     `}
-                    key={permission}
-                  >
-                    {permission}
-                  </span>
-                ))}
+                      key={permission}
+                    >
+                      {permission}
+                    </span>
+                  );
+                })}
               </div>
             </div>
             <UserActionsPopover
               userEmail={user.email}
               onDeleteUser={onDeleteUser}
+              setEditUserPermissions={setEditUserPermissions}
+              userPermissions={user.permissions}
+              setIsModalOpen={setIsModalOpen}
             />
           </div>
         </div>

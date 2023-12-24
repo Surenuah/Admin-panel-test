@@ -7,10 +7,15 @@ interface Props {
   searchedEmail: string;
   setSearchedEmail: (value: string) => void;
   displayedUsers: UsersT[];
-  sendInviteToUser: (value: UsersT) => void;
-  deleteUser: (value: string) => void;
+  sendInviteToUser?: (value: UsersT) => void;
+  deleteUser?: (value: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
+  editUserPermissions: {
+    email: string;
+    permissions: string[];
+  };
+  setEditUserPermissions: (email: string, permissions: string[]) => void;
 }
 
 export const UserList: FC<Props> = ({
@@ -21,6 +26,8 @@ export const UserList: FC<Props> = ({
   deleteUser,
   isModalOpen,
   setIsModalOpen,
+  editUserPermissions,
+  setEditUserPermissions,
 }) => {
   return (
     <div
@@ -33,11 +40,14 @@ export const UserList: FC<Props> = ({
           onSendInvite={sendInviteToUser}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          editUserPermissions={editUserPermissions}
         />
         <UserCard
           allUsers={displayedUsers}
           searchedEmail={searchedEmail}
           onDeleteUser={deleteUser}
+          setIsModalOpen={setIsModalOpen}
+          setEditUserPermissions={setEditUserPermissions}
         />
       </div>
     </div>

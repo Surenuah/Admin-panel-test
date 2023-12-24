@@ -4,23 +4,32 @@ import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
 
 interface Props {
   userEmail: string;
-  onDeleteUser: (value: string) => void;
+  onDeleteUser?: (value: string) => void;
+  setEditUserPermissions?: (email: string, permissions: string[]) => void;
+  userPermissions: string[];
+  setIsModalOpen: (value: boolean) => void;
 }
 
-export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
-  const [selectedUserIndex, setSelectedUserIndex] = useState<string>();
+export const UserActionsPopover: FC<Props> = ({
+  userEmail,
+  onDeleteUser,
+  setEditUserPermissions,
+  userPermissions,
+  setIsModalOpen,
+}) => {
+  const [selectedUserEmail, setSelectedUserEmail] = useState<string>();
 
   const handleOpenChange = (visible: boolean) => {
     if (visible) {
-      setSelectedUserIndex(userEmail);
+      setSelectedUserEmail(userEmail);
     } else {
-      setSelectedUserIndex(undefined);
+      setSelectedUserEmail(undefined);
     }
   };
 
   const handleDeleteUser = () => {
     try {
-      onDeleteUser(userEmail);
+      onDeleteUser?.(userEmail);
 
       notification.success({
         message: "Успех",
@@ -37,16 +46,28 @@ export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
   return (
     <Popover
       trigger="click"
-      open={userEmail === selectedUserIndex}
+      open={userEmail === selectedUserEmail}
       onOpenChange={handleOpenChange}
       content={
         <div className="flex flex-col items-start p-2">
-          <Button className="bg-transparent border-none outline-none flex items-center justify-center">
+          <Button
+            className="bg-transparent border-none outline-none flex items-center justify-center"
+            onClick={() => {
+              setIsModalOpen(true);
+              setEditUserPermissions?.(userEmail, userPermissions);
+            }}
+          >
             <span className="cursor-pointer ml-[-15px]">
               Изменить права доступа
             </span>
           </Button>
-          <Button className="bg-transparent border-none outline-none flex items-center justify-center">
+          <Button
+            className="bg-transparent border-none outline-none flex items-center justify-center"
+            onClick={() => {
+              setIsModalOpen(true);
+              setEditUserPermissions?.(userEmail, userPermissions);
+            }}
+          >
             <span className="mt-2 cursor-pointer ml-[-15px]">
               Отправить код повторно
             </span>

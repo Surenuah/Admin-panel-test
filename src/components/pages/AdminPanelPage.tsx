@@ -10,6 +10,13 @@ export const AdminPanelPage = () => {
   const [searchedEmail, setSearchedEmail] = useState("");
   const [allUsers, setAllUsers] = useState<UsersT[]>([]);
   const [displayedUsers, setDisplayedUsers] = useState<UsersT[]>([]);
+  const [editUserPermissions, setEditUserPermissions] = useState<{
+    email: string;
+    permissions: string[];
+  }>({
+    email: "",
+    permissions: [],
+  });
 
   const { data: initialAllUsers } = useQuery(["data/users"], () =>
     adminPanelApi.getAllUsers().then((response) => response.data),
@@ -23,6 +30,10 @@ export const AdminPanelPage = () => {
     setAllUsers((prevUsers) =>
       prevUsers.filter((user) => user.email !== email),
     );
+  };
+
+  const setEmailAndPermissions = (email: string, permissions: string[]) => {
+    setEditUserPermissions({ email, permissions });
   };
 
   useEffect(() => {
@@ -48,6 +59,8 @@ export const AdminPanelPage = () => {
         deleteUser={deleteUser}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        editUserPermissions={editUserPermissions}
+        setEditUserPermissions={setEmailAndPermissions}
       />
     </div>
   );

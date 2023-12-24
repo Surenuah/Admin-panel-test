@@ -9,7 +9,11 @@ interface Props {
   setSearchedEmail: (value: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  onSendInvite: (values: UsersT) => void;
+  onSendInvite?: (values: UsersT) => void;
+  editUserPermissions: {
+    email: string;
+    permissions: string[];
+  };
 }
 
 export const SearchAndAddUserMolecule: FC<Props> = ({
@@ -17,6 +21,7 @@ export const SearchAndAddUserMolecule: FC<Props> = ({
   onSendInvite,
   isModalOpen,
   setIsModalOpen,
+  editUserPermissions,
 }) => {
   return (
     <div className="flex justify-between p-5 pb-2 mx-3">
@@ -30,6 +35,7 @@ export const SearchAndAddUserMolecule: FC<Props> = ({
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           onSendInvite={onSendInvite}
+          editUserPermissions={editUserPermissions}
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Select as SelectAntd } from "antd";
 import styled from "@emotion/styled";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { allPermissions } from "../../constants/AdminPanel.ts";
 
 interface Props {
@@ -23,14 +23,18 @@ const Select = styled(SelectAntd)`
 export const PermissionsSelect: FC<Props> = ({ id, value, onChange }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>(value || []);
 
-  const handleSelectChange = (selectedValues: string[]) => {
-    if (selectedValues.includes("Все")) {
-      setSelectedOptions(allPermissions);
-    } else {
-      setSelectedOptions(selectedValues);
-    }
+  useEffect(() => {
+    setSelectedOptions(value);
+  }, [value]);
 
+  const handleSelectChange = (selectedValues: string[]) => {
+    setSelectedOptions(selectedValues);
     onChange(selectedValues);
+  };
+
+  const handleClear = () => {
+    setSelectedOptions([]);
+    onChange([]);
   };
 
   return (
@@ -49,10 +53,8 @@ export const PermissionsSelect: FC<Props> = ({ id, value, onChange }) => {
       maxTagCount="responsive"
       showSearch
       onChange={(value) => handleSelectChange(value as string[])}
+      onClear={handleClear}
     >
-      <SelectAntd.Option key="Все" value="Все">
-        Все
-      </SelectAntd.Option>
       {allPermissions.map((permission) => (
         <SelectAntd.Option key={permission} value={permission}>
           {permission}

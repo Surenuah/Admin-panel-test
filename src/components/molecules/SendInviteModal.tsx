@@ -7,7 +7,11 @@ import { UsersT } from "../../types/AdminPanel.ts";
 interface Props {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  onSendInvite: (values: UsersT) => void;
+  onSendInvite?: (values: UsersT) => void;
+  editUserPermissions: {
+    email: string;
+    permissions: string[];
+  };
 }
 
 const Modal = styled(ModalAntd)`
@@ -30,6 +34,7 @@ export const SendInviteModal: FC<Props> = ({
   isModalOpen,
   setIsModalOpen,
   onSendInvite,
+  editUserPermissions,
 }) => {
   return (
     <Modal
@@ -43,6 +48,7 @@ export const SendInviteModal: FC<Props> = ({
       <SendInviteForm
         onSendInvite={onSendInvite}
         setIsModalOpen={setIsModalOpen}
+        editUserPermissions={editUserPermissions}
       />
     </Modal>
   );

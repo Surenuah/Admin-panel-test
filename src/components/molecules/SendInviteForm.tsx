@@ -7,19 +7,30 @@ import { FC } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
-  onSendInvite: (values: UsersT) => void;
+  onSendInvite?: (values: UsersT) => void;
   setIsModalOpen: (value: boolean) => void;
+  editUserPermissions: {
+    email: string;
+    permissions: string[];
+  };
 }
 
-export const SendInviteForm: FC<Props> = ({ onSendInvite, setIsModalOpen }) => {
+export const SendInviteForm: FC<Props> = ({
+  onSendInvite,
+  setIsModalOpen,
+  editUserPermissions,
+}) => {
   const formik = useFormik<UsersT>({
     initialValues: {
-      email: "",
-      permissions: [],
+      email: editUserPermissions.email || "",
+      permissions: editUserPermissions.permissions || [],
     },
+    enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        onSendInvite(values);
+        onSendInvite?.(values);
+
+        formik.resetForm();
 
         notification.success({
           message: "Успех",
