@@ -3,7 +3,7 @@ import { EmailInput } from "@/components/atoms/EmailInput.tsx";
 import { PermissionsSelect } from "@/components/atoms/PermissionsSelect.tsx";
 import { useFormik } from "formik";
 import Title from "antd/es/typography/Title";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
@@ -30,7 +30,7 @@ export const SendInviteForm: FC<Props> = ({
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        if (editUserPermissions) {
+        if (editUserPermissions.email) {
           onEditUser();
         } else {
           onSendInvite?.(values);
@@ -41,14 +41,14 @@ export const SendInviteForm: FC<Props> = ({
         notification.success({
           message: "Успех",
           description: `Пользователь с email ${formik.values.email} ${
-            editUserPermissions ? "успешно изменен!" : "успешно добавлен!"
+            editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
           }`,
         });
       } catch (err) {
         notification.error({
           message: "Ошибка",
           description: `Не удалось ${
-            editUserPermissions ? "изменить" : "добавить"
+            editUserPermissions.email ? "изменить" : "добавить"
           } пользователя.`,
         });
       }
@@ -56,11 +56,6 @@ export const SendInviteForm: FC<Props> = ({
       setIsModalOpen(false);
     },
   });
-
-  useEffect(() => {
-    formik.setFieldValue("email", editUserPermissions.email);
-    formik.setFieldValue("permissions", editUserPermissions.permissions);
-  }, [editUserPermissions]);
 
   return (
     <div className="p-11">
