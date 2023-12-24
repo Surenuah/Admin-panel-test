@@ -1,41 +1,27 @@
 import { SearchAndAddUserMolecule } from "@/components/molecules/SearchAndAddUserMolecule.tsx";
 import { UserCard } from "@/components/molecules/UserCard.tsx";
-import { useQuery } from "react-query";
-import { adminPanelApi } from "../../api/adminPanel.tsx";
-import { useEffect, useState } from "react";
 import { UsersT } from "../../types/AdminPanel.ts";
+import { FC } from "react";
 
-export const UserList = () => {
-  const [searchedEmail, setSearchedEmail] = useState("");
-  const [allUsers, setAllUsers] = useState<UsersT[]>([]);
-  const [displayedUsers, setDisplayedUsers] = useState<UsersT[]>([]);
+interface Props {
+  searchedEmail: string;
+  setSearchedEmail: (value: string) => void;
+  displayedUsers: UsersT[];
+  sendInviteToUser: (value: UsersT) => void;
+  deleteUser: (value: string) => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+}
 
-  const { data: initialAllUsers } = useQuery(["data/users"], () =>
-    adminPanelApi.getAllUsers().then((response) => response.data),
-  );
-
-  const sendInviteToUser = (newUser: UsersT) => {
-    setAllUsers((prevUsers) => [...prevUsers, newUser]);
-  };
-
-  const deleteUser = (email: string) => {
-    setAllUsers((prevUsers) =>
-      prevUsers.filter((user) => user.email !== email),
-    );
-  };
-
-  useEffect(() => {
-    setAllUsers(initialAllUsers || []);
-  }, [initialAllUsers]);
-
-  useEffect(() => {
-    setDisplayedUsers(
-      allUsers.filter((user) =>
-        user.email.toLowerCase().includes(searchedEmail.toLowerCase()),
-      ),
-    );
-  }, [allUsers, searchedEmail]);
-
+export const UserList: FC<Props> = ({
+  searchedEmail,
+  setSearchedEmail,
+  displayedUsers,
+  sendInviteToUser,
+  deleteUser,
+  isModalOpen,
+  setIsModalOpen,
+}) => {
   return (
     <div
       className="bg-gray-100 flex flex-col items-center justify-start"
@@ -45,11 +31,16 @@ export const UserList = () => {
         <SearchAndAddUserMolecule
           setSearchedEmail={setSearchedEmail}
           onSendInvite={sendInviteToUser}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
         />
         <UserCard
           allUsers={displayedUsers}
           searchedEmail={searchedEmail}
           onDeleteUser={deleteUser}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          onSendInvite={sendInviteToUser}
         />
       </div>
     </div>

@@ -1,21 +1,23 @@
 import Title from "antd/es/typography/Title";
 import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
 import { AddUserButton } from "@/components/atoms/AddUserButton.tsx";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
 import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
-  setSearchedEmail: (e: string) => void;
+  setSearchedEmail: (value: string) => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
   onSendInvite: (values: UsersT) => void;
 }
 
 export const SearchAndAddUserMolecule: FC<Props> = ({
   setSearchedEmail,
   onSendInvite,
+  isModalOpen,
+  setIsModalOpen,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <div className="flex justify-between p-5 pb-2 mx-3">
       <Title className="font-futura" level={2}>

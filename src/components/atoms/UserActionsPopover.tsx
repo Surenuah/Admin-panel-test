@@ -1,10 +1,14 @@
 import { Button, Popover } from "antd";
 import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
+import { UsersT } from "../../types/AdminPanel.ts";
 
 interface Props {
   userEmail: string;
   onDeleteUser: (value: string) => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+  onSendInvite: (values: UsersT) => void;
 }
 
 export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
@@ -29,8 +33,16 @@ export const UserActionsPopover: FC<Props> = ({ userEmail, onDeleteUser }) => {
       onOpenChange={handleOpenChange}
       content={
         <div className="flex flex-col items-start p-2">
-          <span className="cursor-pointer">Изменить права доступа</span>
-          <span className="mt-2 cursor-pointer">Отправить код повторно</span>
+          <Button className="bg-transparent border-none outline-none flex items-center justify-center">
+            <span className="cursor-pointer ml-[-15px]">
+              Изменить права доступа
+            </span>
+          </Button>
+          <Button className="bg-transparent border-none outline-none flex items-center justify-center">
+            <span className="mt-2 cursor-pointer ml-[-15px]">
+              Отправить код повторно
+            </span>
+          </Button>
           <Button
             className="bg-transparent border-none outline-none flex items-center justify-center"
             onClick={handleDeleteUser}
