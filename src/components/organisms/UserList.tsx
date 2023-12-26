@@ -48,7 +48,7 @@ export const UserList: FC<Props> = ({
       className="bg-gray-100 flex flex-col items-center justify-start"
       style={{ flex: "25" }}
     >
-      <div className="bg-white rounded-[10px] mt-12 w-[80%]">
+      <div className="bg-white rounded-[10px] mt-0 lg:mt-12 w-[100%] lg:w-[80%]">
         <SearchAndAddUser
           setSearchedEmail={setSearchedEmail}
           onSendInvite={sendInviteToUser}
