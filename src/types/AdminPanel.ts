@@ -4,3 +4,8 @@ export type UsersT = {
   permissions: string[];
   image?: string;
 };
+
+export type UserT = {
+  email?: string;
+  permissions?: string[];
+};

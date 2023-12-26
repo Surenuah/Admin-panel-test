@@ -1,21 +1,22 @@
 import { Button, notification, Popover } from "antd";
 import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
+import { UserT } from "../../types/AdminPanel.ts";
 
 interface Props {
-  userEmail: string;
-  onDeleteUser?: (value: string) => void;
-  setEditUserPermissions?: (email: string, permissions: string[]) => void;
-  userPermissions: string[];
+  userEmail?: string;
+  onDeleteUser: (value?: string) => void;
+  userPermissions?: string[];
   setIsModalOpen: (value: boolean) => void;
+  setSelectedUser: (value: UserT) => void;
 }
 
 export const UserActionsPopover: FC<Props> = ({
   userEmail,
   onDeleteUser,
-  setEditUserPermissions,
   userPermissions,
   setIsModalOpen,
+  setSelectedUser,
 }) => {
   const [selectedUserEmail, setSelectedUserEmail] = useState<string>();
 
@@ -29,7 +30,7 @@ export const UserActionsPopover: FC<Props> = ({
 
   const handleDeleteUser = () => {
     try {
-      onDeleteUser?.(userEmail);
+      onDeleteUser(userEmail);
 
       notification.success({
         message: "Успех",
@@ -54,7 +55,10 @@ export const UserActionsPopover: FC<Props> = ({
             className="bg-transparent border-none outline-none flex items-center justify-center"
             onClick={() => {
               setIsModalOpen(true);
-              setEditUserPermissions?.(userEmail, userPermissions);
+              setSelectedUser({
+                email: userEmail,
+                permissions: userPermissions,
+              });
             }}
           >
             <span className="cursor-pointer ml-[-15px]">
@@ -65,7 +69,10 @@ export const UserActionsPopover: FC<Props> = ({
             className="bg-transparent border-none outline-none flex items-center justify-center"
             onClick={() => {
               setIsModalOpen(true);
-              setEditUserPermissions?.(userEmail, userPermissions);
+              setSelectedUser({
+                email: userEmail,
+                permissions: userPermissions,
+              });
             }}
           >
             <span className="mt-2 cursor-pointer ml-[-15px]">

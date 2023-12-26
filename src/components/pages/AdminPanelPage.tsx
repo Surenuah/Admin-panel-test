@@ -1,7 +1,7 @@
 import { Sidebar } from "@/components/molecules/Sidebar.tsx";
 import { UserList } from "@/components/organisms/UserList.tsx";
 import { useEffect, useState } from "react";
-import { UsersT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "../../types/AdminPanel.ts";
 import { useQuery } from "react-query";
 import { adminPanelApi } from "../../api/adminPanel.tsx";
 import { notification } from "antd";
@@ -10,13 +10,7 @@ export const AdminPanelPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchedEmail, setSearchedEmail] = useState("");
   const [addedUsers, setAddedUsers] = useState<UsersT[]>([]);
-  const [editUserPermissions, setEditUserPermissions] = useState<{
-    email: string;
-    permissions: string[];
-  }>({
-    email: "",
-    permissions: [],
-  });
+  const [selectedUser, setSelectedUser] = useState<UserT>();
 
   const { data: allUsers } = useQuery(["data/users"], () =>
     adminPanelApi.getAllUsers().then((response) => response.data),
@@ -32,59 +26,41 @@ export const AdminPanelPage = () => {
 
       notification.success({
         message: "Успех",
-        description: `Пользователь с email ${editUserPermissions.email} ${
-          editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
-        }`,
+        description: `Пользователь с ${selectedUser?.email} успешно добавлен!`,
       });
     } else {
       notification.error({
         message: "Ошибка",
-        description: "Пользователь с таким email уже существует",
+        description: `Пользователь с ${selectedUser?.email} уже существует`,
       });
     }
   };
 
-  const deleteUser = (email: string) => {
+  const deleteUser = (email?: string) => {
     setAddedUsers((prevUsers) =>
       prevUsers.filter((user) => user.email !== email),
     );
   };
 
-  const editUser = () => {
-    const editedUserIndex = addedUsers.findIndex(
-      (user) => user.email === editUserPermissions.email,
-    );
+  const editUser = (newEmail?: string, newPermissions?: string[]) => {
+    setAddedUsers((prevUsers) => {
+      return prevUsers.map((user) => {
+        if (user.email === selectedUser?.email) {
+          return {
+            ...user,
+            email: newEmail || user.email,
+            permissions: newPermissions || user.permissions,
+          };
+        }
 
-    if (editedUserIndex !== -1) {
-      const updatedUser = {
-        ...addedUsers[editedUserIndex],
-        permissions: editUserPermissions.permissions,
-      };
-
-      setAddedUsers((prevUsers) => [
-        ...prevUsers.slice(0, editedUserIndex),
-        updatedUser,
-        ...prevUsers.slice(editedUserIndex + 1),
-      ]);
-
-      setEditUserPermissions({
-        email: "",
-        permissions: [],
+        return user;
       });
+    });
 
-      setEmailAndPermissions("", []);
-
-      notification.success({
-        message: "Успех",
-        description: `Пользователь с email ${editUserPermissions.email} ${
-          editUserPermissions.email ? "успешно изменен!" : "успешно добавлен!"
-        }`,
-      });
-    }
-  };
-
-  const setEmailAndPermissions = (email: string, permissions: string[]) => {
-    setEditUserPermissions({ email, permissions });
+    notification.success({
+      message: "Успех",
+      description: `Пользователь с ${selectedUser?.email} успешно изменен!`,
+    });
   };
 
   useEffect(() => {
@@ -102,9 +78,9 @@ export const AdminPanelPage = () => {
         deleteUser={deleteUser}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        editUserPermissions={editUserPermissions}
-        setEditUserPermissions={setEmailAndPermissions}
         onEditUser={editUser}
+        selectedUser={selectedUser}
+        setSelectedUser={setSelectedUser}
       />
     </div>
   );

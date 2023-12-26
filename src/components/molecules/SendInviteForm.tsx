@@ -4,34 +4,31 @@ import { PermissionsSelect } from "@/components/atoms/PermissionsSelect.tsx";
 import { useFormik } from "formik";
 import Title from "antd/es/typography/Title";
 import { FC } from "react";
-import { UsersT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "../../types/AdminPanel.ts";
 
 interface Props {
   onSendInvite?: (values: UsersT) => void;
   setIsModalOpen: (value: boolean) => void;
-  editUserPermissions: {
-    email: string;
-    permissions: string[];
-  };
-  onEditUser: () => void;
+  selectedUser?: UserT;
+  onEditUser: (email: string, permissions: string[]) => void;
 }
 
 export const SendInviteForm: FC<Props> = ({
   onSendInvite,
   setIsModalOpen,
-  editUserPermissions,
+  selectedUser,
   onEditUser,
 }) => {
   const formik = useFormik<UsersT>({
     initialValues: {
-      email: editUserPermissions.email || "",
-      permissions: editUserPermissions.permissions || [],
+      email: selectedUser?.email || "",
+      permissions: selectedUser?.permissions || [],
     },
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        if (editUserPermissions.email) {
-          onEditUser();
+        if (selectedUser) {
+          onEditUser(values.email, values.permissions);
         } else {
           onSendInvite?.(values);
         }
@@ -41,7 +38,7 @@ export const SendInviteForm: FC<Props> = ({
         notification.error({
           message: "Ошибка",
           description: `Не удалось ${
-            editUserPermissions.email ? "изменить" : "добавить"
+            selectedUser?.email ? "изменить" : "добавить"
           } пользователя.`,
         });
       }

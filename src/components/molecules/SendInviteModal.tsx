@@ -2,17 +2,14 @@ import { Modal as ModalAntd } from "antd";
 import { FC } from "react";
 import { SendInviteForm } from "@/components/molecules/SendInviteForm.tsx";
 import styled from "@emotion/styled";
-import { UsersT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "../../types/AdminPanel.ts";
 
 interface Props {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
   onSendInvite?: (values: UsersT) => void;
-  editUserPermissions: {
-    email: string;
-    permissions: string[];
-  };
-  onEditUser: () => void;
+  selectedUser?: UserT;
+  onEditUser: (email: string, permissions: string[]) => void;
 }
 
 const Modal = styled(ModalAntd)`
@@ -35,7 +32,7 @@ export const SendInviteModal: FC<Props> = ({
   isModalOpen,
   setIsModalOpen,
   onSendInvite,
-  editUserPermissions,
+  selectedUser,
   onEditUser,
 }) => {
   return (
@@ -50,7 +47,7 @@ export const SendInviteModal: FC<Props> = ({
       <SendInviteForm
         onSendInvite={onSendInvite}
         setIsModalOpen={setIsModalOpen}
-        editUserPermissions={editUserPermissions}
+        selectedUser={selectedUser}
         onEditUser={onEditUser}
       />
     </Modal>

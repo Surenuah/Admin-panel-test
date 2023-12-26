@@ -1,84 +1,63 @@
 import { FC } from "react";
-import { UsersT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "../../types/AdminPanel.ts";
 import accountIcon from "../../assets/sidebar/Account_Icon.svg";
 import { UserActionsPopover } from "@/components/molecules/UserActionsPopover.tsx";
 
 interface Props {
-  addedUsers?: UsersT[];
-  searchedEmail: string;
-  onDeleteUser?: (value: string) => void;
+  user?: UsersT;
+  userIndex: number;
+  onDeleteUser: (value?: string) => void;
   setIsModalOpen: (value: boolean) => void;
-  setEditUserPermissions?: (email: string, permissions: string[]) => void;
+  setSelectedUser: (value: UserT) => void;
 }
 
 export const UserCard: FC<Props> = ({
-  addedUsers,
-  searchedEmail,
+  user,
+  userIndex,
   onDeleteUser,
-  setEditUserPermissions,
   setIsModalOpen,
+  setSelectedUser,
 }) => {
-  const sortedUsers = addedUsers?.slice().sort((a, b) => {
-    if (a.permissions.includes("Администратор")) {
-      return -1;
-    }
-    if (b.permissions.includes("Администратор")) {
-      return 1;
-    }
-
-    return 0;
-  });
-
-  const filteredUsers = sortedUsers?.filter((user) =>
-    user.email.toLowerCase().includes(searchedEmail.toLowerCase()),
-  );
-
   return (
     <>
-      {filteredUsers?.map((user, userIndex) => (
-        <div key={userIndex} className="flex p-6 hover:bg-gray-100">
-          <img
-            className="rounded-[50%] w-[64px] h-[64px]"
-            src={user.image ?? accountIcon}
-            alt=""
-          />
-          <div className="flex flex-grow justify-between ml-2">
-            <div className="flex flex-col">
-              <div className="flex">
-                <span className="font-semibold">
-                  {user.name ?? "Пользователь"}
-                </span>
-                <span className="text-[#9494A0] ml-2">{user.email}</span>
-              </div>
-              <div className="flex">
-                {user.permissions.map((permission) => {
-                  return (
-                    <span
-                      className={`border rounded-[10px]
-                      ${
-                        permission === "Администратор"
-                          ? "border-[#5A57FF] text-[#5A57FF] font-normal"
-                          : "border-[#C1C1CB] text-[#9494A0] font-normal"
-                      }w-[70%] text-center py-1 px-2 mt-2 mr-2
-                    `}
-                      key={permission}
-                    >
-                      {permission}
-                    </span>
-                  );
-                })}
-              </div>
+      <div key={userIndex} className="flex p-6 hover:bg-gray-100">
+        <img
+          className="rounded-[50%] w-[64px] h-[64px]"
+          src={user?.image ?? accountIcon}
+          alt=""
+        />
+        <div className="flex flex-grow justify-between ml-2">
+          <div className="flex flex-col">
+            <div className="flex">
+              <span className="font-semibold">
+                {user?.name ?? "Пользователь"}
+              </span>
+              <span className="text-[#9494A0] ml-2">{user?.email}</span>
             </div>
-            <UserActionsPopover
-              userEmail={user.email}
-              onDeleteUser={onDeleteUser}
-              setEditUserPermissions={setEditUserPermissions}
-              userPermissions={user.permissions}
-              setIsModalOpen={setIsModalOpen}
-            />
+            <div className="flex">
+              {user?.permissions?.map((permission) => (
+                <span
+                  className={`border rounded-[10px] ${
+                    permission === "Администратор"
+                      ? "border-[#5A57FF] text-[#5A57FF] font-normal"
+                      : "border-[#C1C1CB] text-[#9494A0] font-normal"
+                  }w-[70%] text-center py-1 px-2 mt-2 mr-2`}
+                  key={permission}
+                >
+                  {permission}
+                </span>
+              ))}
+            </div>
           </div>
+          <UserActionsPopover
+            userEmail={user?.email}
+            onDeleteUser={onDeleteUser}
+            userPermissions={user?.permissions}
+            setIsModalOpen={setIsModalOpen}
+            setSelectedUser={setSelectedUser}
+          />
         </div>
-      ))}
+      </div>
     </>
   );
 };

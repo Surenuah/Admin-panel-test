@@ -3,18 +3,15 @@ import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
 import { AddUserButton } from "@/components/atoms/AddUserButton.tsx";
 import { FC } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
-import { UsersT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "../../types/AdminPanel.ts";
 
 interface Props {
   setSearchedEmail: (value: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
   onSendInvite?: (values: UsersT) => void;
-  editUserPermissions: {
-    email: string;
-    permissions: string[];
-  };
-  onEditUser: () => void;
+  selectedUser?: UserT;
+  onEditUser: (email: string, permissions: string[]) => void;
 }
 
 export const SearchAndAddUser: FC<Props> = ({
@@ -22,7 +19,7 @@ export const SearchAndAddUser: FC<Props> = ({
   onSendInvite,
   isModalOpen,
   setIsModalOpen,
-  editUserPermissions,
+  selectedUser,
   onEditUser,
 }) => {
   return (
@@ -37,7 +34,7 @@ export const SearchAndAddUser: FC<Props> = ({
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           onSendInvite={onSendInvite}
-          editUserPermissions={editUserPermissions}
+          selectedUser={selectedUser}
           onEditUser={onEditUser}
         />
       </div>
