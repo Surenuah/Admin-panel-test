@@ -68,7 +68,7 @@ export const AdminPanelPage = () => {
   }, [allUsers]);
 
   return (
-    <div className={`flex w-screen min-h-screen`}>
+    <div className="flex w-screen min-h-screen">
       <Sidebar />
       <UserList
         searchedEmail={searchedEmail}

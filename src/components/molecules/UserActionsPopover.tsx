@@ -62,21 +62,7 @@ export const UserActionsPopover: FC<Props> = ({
             }}
           >
             <span className="cursor-pointer ml-[-15px]">
-              Изменить права доступа
-            </span>
-          </Button>
-          <Button
-            className="bg-transparent border-none outline-none flex items-center justify-center"
-            onClick={() => {
-              setIsModalOpen(true);
-              setSelectedUser({
-                email: userEmail,
-                permissions: userPermissions,
-              });
-            }}
-          >
-            <span className="mt-2 cursor-pointer ml-[-15px]">
-              Отправить код повторно
+              Редактировать пользователя
             </span>
           </Button>
           <Button
