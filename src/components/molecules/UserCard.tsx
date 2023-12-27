@@ -22,7 +22,7 @@ export const UserCard: FC<Props> = ({
     <>
       <div key={userIndex} className="flex mt-3 p-2 lg:p-6 hover:bg-gray-100">
         <img
-          className="rounded-[50%] w-[64px] h-[64px]"
+          className="rounded-[50%] w-[64px] h-[64px] object-cover"
           src={user?.image ?? accountIcon}
           alt=""
         />
