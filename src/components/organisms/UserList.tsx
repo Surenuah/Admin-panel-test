@@ -6,7 +6,7 @@ import { FC } from "react";
 interface Props {
   searchedEmail: string;
   setSearchedEmail: (value: string) => void;
-  addedUsers: UsersT[];
+  addedUsers?: UsersT[];
   sendInviteToUser: (value: UsersT) => void;
   deleteUser: (value?: string) => void;
   isModalOpen: boolean;
@@ -57,7 +57,7 @@ export const UserList: FC<Props> = ({
           selectedUser={selectedUser}
           onEditUser={onEditUser}
         />
-        {filteredUsers.map((user, userIndex) => {
+        {filteredUsers?.map((user, userIndex) => {
           return (
             <UserCard
               key={userIndex}
