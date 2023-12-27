@@ -26,12 +26,12 @@ export const AdminPanelPage = () => {
 
       notification.success({
         message: "Успех",
-        description: `Пользователь с ${selectedUser?.email} успешно добавлен!`,
+        description: `Пользователь с ${newUser?.email} успешно добавлен!`,
       });
     } else {
       notification.error({
         message: "Ошибка",
-        description: `Пользователь с ${selectedUser?.email} уже существует`,
+        description: `Пользователь с ${newUser?.email} уже существует`,
       });
     }
   };
