@@ -29,6 +29,9 @@ export const SendInviteForm: FC<Props> = ({
       try {
         if (selectedUser) {
           onEditUser(values.email, values.permissions);
+
+          selectedUser.email = "";
+          selectedUser.permissions = [];
         } else {
           onSendInvite?.(values);
         }

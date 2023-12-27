@@ -25,9 +25,8 @@ export const Sidebar = () => {
   return (
     <>
       <div
-        className={`z-50 flex flex-col fixed top-0 bottom-0 left-0 overflow-y-auto items-start lg:w-[120px] lg:flex lg:items-center gap-10 bg-white pt-5 ${
-          isSidebarOpen ? "w-[100%]" : "w-0"
-        }`}
+        className={`z-50 flex flex-col fixed top-0 bottom-0 left-0 overflow-y-auto items-start lg:w-[120px] lg:flex lg:items-center gap-10 
+        bg-white pt-5 ${isSidebarOpen ? "w-[100%]" : "w-0"}`}
         style={{ transition: "width 1s ease" }}
       >
         <SidebarButton sidebarIcon={logo} />

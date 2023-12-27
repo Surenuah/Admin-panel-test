@@ -32,6 +32,7 @@ export const UserList: FC<Props> = ({
     if (a.permissions.includes("Администратор")) {
       return -1;
     }
+
     if (b.permissions.includes("Администратор")) {
       return 1;
     }
