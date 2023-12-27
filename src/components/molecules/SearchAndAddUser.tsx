@@ -23,11 +23,11 @@ export const SearchAndAddUser: FC<Props> = ({
   onEditUser,
 }) => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between p-0 lg:p-5 pb-2 mx-0 lg:mx-3">
-      <Title className="ml-12 mt-4 lg:ml-0 font-futura" level={2}>
+    <div className="flex flex-col lg:flex-row justify-between lg:items-center p-0 lg:px-3 lg:pt-2 pb-2 mx-0 lg:mx-3">
+      <Title className="ml-12 mt-4 lg:ml-0 lg:mt-3 font-futura" level={2}>
         Команда
       </Title>
-      <div className="ml-1 flex flex-col items-center justify-center lg:flex-row lg:justify-end lg:items-baseline w-[98%] lg:w-[80%]">
+      <div className="ml-1 flex flex-col items-center justify-center lg:flex-row lg:justify-end lg:items-center w-[98%] lg:w-[80%]">
         <SearchEmailInput setSearchedEmail={setSearchedEmail} />
         <AddUserButton onClick={() => setIsModalOpen(true)} />
         <SendInviteModal

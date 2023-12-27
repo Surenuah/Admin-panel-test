@@ -13,7 +13,7 @@ export const SearchEmailInput: FC<Props> = ({ setSearchedEmail }) => {
 
   return (
     <Input
-      className="font-semibold placeholder-[#9494A0] border-[#C1C1CB] mb-2 lg:w-[70%] h-[35px] rounded-[10px] text-[15px]"
+      className="font-semibold placeholder-[#9494A0] border-[#C1C1CB] mb-2 lg:mb-0 lg:w-[70%] h-[35px] rounded-[10px] text-[15px]"
       placeholder="Поиск по Email"
       onChange={handleInputChange}
       suffix={<img src={searchIcon} alt="" />}
