@@ -74,7 +74,7 @@ export const AdminPanelPage = () => {
         searchedEmail={searchedEmail}
         setSearchedEmail={setSearchedEmail}
         addedUsers={addedUsers}
-        sendInviteToUser={sendInviteToUser}
+        onSendInvite={sendInviteToUser}
         deleteUser={deleteUser}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

@@ -9,7 +9,7 @@ interface Props {
   setSearchedEmail: (value: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  onSendInvite?: (values: UsersT) => void;
+  onSendInvite: (values: UsersT) => void;
   selectedUser?: UserT;
   onEditUser: (email: string, permissions: string[]) => void;
 }

@@ -7,7 +7,7 @@ interface Props {
   searchedEmail: string;
   setSearchedEmail: (value: string) => void;
   addedUsers?: UsersT[];
-  sendInviteToUser: (value: UsersT) => void;
+  onSendInvite: (value: UsersT) => void;
   deleteUser: (value?: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -20,7 +20,7 @@ export const UserList: FC<Props> = ({
   searchedEmail,
   setSearchedEmail,
   addedUsers,
-  sendInviteToUser,
+  onSendInvite,
   deleteUser,
   isModalOpen,
   setIsModalOpen,
@@ -52,7 +52,7 @@ export const UserList: FC<Props> = ({
       <div className="bg-white rounded-[10px] mt-0 lg:mt-12 w-[100%] lg:w-[80%]">
         <SearchAndAddUser
           setSearchedEmail={setSearchedEmail}
-          onSendInvite={sendInviteToUser}
+          onSendInvite={onSendInvite}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           selectedUser={selectedUser}

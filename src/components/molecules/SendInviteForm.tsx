@@ -7,7 +7,7 @@ import { FC } from "react";
 import { UsersT, UserT } from "../../types/AdminPanel.ts";
 
 interface Props {
-  onSendInvite?: (values: UsersT) => void;
+  onSendInvite: (values: UsersT) => void;
   setIsModalOpen: (value: boolean) => void;
   selectedUser?: UserT;
   onEditUser: (email: string, permissions: string[]) => void;
@@ -33,7 +33,7 @@ export const SendInviteForm: FC<Props> = ({
           selectedUser.email = "";
           selectedUser.permissions = [];
         } else {
-          onSendInvite?.(values);
+          onSendInvite(values);
         }
 
         formik.resetForm();
