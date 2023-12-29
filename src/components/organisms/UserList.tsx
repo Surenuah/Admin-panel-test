@@ -28,7 +28,7 @@ export const UserList: FC<Props> = ({
   selectedUser,
   setSelectedUser,
 }) => {
-  const sortedUsers = addedUsers?.slice().sort((a, b) => {
+  const sortedUsersByPermissions = addedUsers?.slice().sort((a, b) => {
     if (a.permissions.includes("Администратор")) {
       return -1;
     }
@@ -40,7 +40,7 @@ export const UserList: FC<Props> = ({
     return 0;
   });
 
-  const filteredUsers = sortedUsers?.filter((user) =>
+  const filteredUsersByEmail = sortedUsersByPermissions?.filter((user) =>
     user.email.toLowerCase().includes(searchedEmail.toLowerCase()),
   );
 
@@ -58,7 +58,7 @@ export const UserList: FC<Props> = ({
           selectedUser={selectedUser}
           onEditUser={onEditUser}
         />
-        {filteredUsers?.map((user, userIndex) => {
+        {filteredUsersByEmail?.map((user, userIndex) => {
           return (
             <UserCard
               key={userIndex}
