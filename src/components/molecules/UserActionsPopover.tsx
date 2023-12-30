@@ -2,6 +2,7 @@ import { Button, notification, Popover } from "antd";
 import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
 import { UserT } from "../../types/AdminPanel.ts";
+import { PopoverActionButton } from "@/components/atoms/PopoverActionButton.tsx";
 
 interface Props {
   userEmail?: string;
@@ -51,8 +52,12 @@ export const UserActionsPopover: FC<Props> = ({
       onOpenChange={handleOpenChange}
       content={
         <div className="flex flex-col items-start p-2">
-          <Button
-            className="bg-transparent border-none outline-none flex items-center justify-center"
+          <PopoverActionButton
+            buttonText={
+              <span className="cursor-pointer ml-[-15px]">
+                Редактировать пользователя
+              </span>
+            }
             onClick={() => {
               setIsModalOpen(true);
               setSelectedUser({
@@ -60,19 +65,15 @@ export const UserActionsPopover: FC<Props> = ({
                 permissions: userPermissions,
               });
             }}
-          >
-            <span className="cursor-pointer ml-[-15px]">
-              Редактировать пользователя
-            </span>
-          </Button>
-          <Button
-            className="bg-transparent border-none outline-none flex items-center justify-center"
+          />
+          <PopoverActionButton
+            buttonText={
+              <span className="mt-2 text-[#9494A0] cursor-pointer ml-[-12px]">
+                Удалить
+              </span>
+            }
             onClick={handleDeleteUser}
-          >
-            <span className="mt-2 text-[#9494A0] cursor-pointer ml-[-12px]">
-              Удалить
-            </span>
-          </Button>
+          />
         </div>
       }
     >

@@ -1,9 +1,9 @@
 import Title from "antd/es/typography/Title";
 import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
-import { AddUserButton } from "@/components/atoms/AddUserButton.tsx";
 import { FC } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
 import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { Button } from "antd";
 
 interface Props {
   setSearchedEmail: (value: string) => void;
@@ -29,7 +29,12 @@ export const SearchAndAddUser: FC<Props> = ({
       </Title>
       <div className="ml-1 flex flex-col items-center justify-center lg:flex-row lg:justify-end lg:items-center w-[98%] lg:w-[80%]">
         <SearchEmailInput setSearchedEmail={setSearchedEmail} />
-        <AddUserButton onClick={() => setIsModalOpen(true)} />
+        <Button
+          className="w-full lg:w-[230px] bg-[#32C076] text-white border-none rounded-[10px] h-[35px] ml-0 lg:ml-3 font-futura text-[18px]"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Добавить пользователя
+        </Button>{" "}
         <SendInviteModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
