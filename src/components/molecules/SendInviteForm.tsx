@@ -4,7 +4,7 @@ import { PermissionsSelect } from "@/components/atoms/PermissionsSelect.tsx";
 import { useFormik } from "formik";
 import Title from "antd/es/typography/Title";
 import { FC } from "react";
-import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "@/types/AdminPanel.ts";
 
 interface Props {
   onSendInvite: (values: UsersT) => void;

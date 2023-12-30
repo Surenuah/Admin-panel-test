@@ -1,7 +1,8 @@
 import { SearchAndAddUser } from "@/components/molecules/SearchAndAddUser.tsx";
 import { UserCard } from "@/components/molecules/UserCard.tsx";
-import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "@/types/AdminPanel.ts";
 import { FC } from "react";
+import { ADMINISTRATOR_PERMISSION } from "@/constants/AdminPanel.ts";
 
 interface Props {
   searchedEmail: string;
@@ -29,11 +30,11 @@ export const UserList: FC<Props> = ({
   setSelectedUser,
 }) => {
   const sortedUsersByPermissions = addedUsers?.slice().sort((a, b) => {
-    if (a.permissions.includes("Администратор")) {
+    if (a.permissions.includes(ADMINISTRATOR_PERMISSION)) {
       return -1;
     }
 
-    if (b.permissions.includes("Администратор")) {
+    if (b.permissions.includes(ADMINISTRATOR_PERMISSION)) {
       return 1;
     }
 

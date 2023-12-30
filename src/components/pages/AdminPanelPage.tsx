@@ -1,10 +1,11 @@
 import { Sidebar } from "@/components/molecules/Sidebar.tsx";
 import { UserList } from "@/components/organisms/UserList.tsx";
 import { useEffect, useState } from "react";
-import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "@/types/AdminPanel.ts";
 import { useQuery } from "react-query";
 import { adminPanelApi } from "../../api/adminPanel.tsx";
 import { notification } from "antd";
+import { USER_PERMISSION } from "@/constants/AdminPanel.ts";
 
 export const AdminPanelPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,12 +27,12 @@ export const AdminPanelPage = () => {
 
       notification.success({
         message: "Успех",
-        description: `Пользователь с ${newUser?.email} успешно добавлен!`,
+        description: `${USER_PERMISSION} с ${newUser?.email} успешно добавлен!`,
       });
     } else {
       notification.error({
         message: "Ошибка",
-        description: `Пользователь с ${newUser?.email} уже существует`,
+        description: `${USER_PERMISSION} с ${newUser?.email} уже существует`,
       });
     }
   };
@@ -59,7 +60,7 @@ export const AdminPanelPage = () => {
 
     notification.success({
       message: "Успех",
-      description: `Пользователь с ${selectedUser?.email} успешно изменен!`,
+      description: `${USER_PERMISSION} с ${selectedUser?.email} успешно изменен!`,
     });
   };
 

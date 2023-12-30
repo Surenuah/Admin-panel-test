@@ -2,7 +2,7 @@ import Title from "antd/es/typography/Title";
 import { SearchEmailInput } from "@/components/atoms/SearchEmailInput.tsx";
 import { FC } from "react";
 import { SendInviteModal } from "@/components/molecules/SendInviteModal.tsx";
-import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "@/types/AdminPanel.ts";
 import { Button } from "antd";
 
 interface Props {

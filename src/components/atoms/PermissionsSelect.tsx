@@ -1,7 +1,7 @@
 import { Select as SelectAntd } from "antd";
 import styled from "@emotion/styled";
 import { FC, useEffect, useState } from "react";
-import { allPermissions } from "../../constants/AdminPanel.ts";
+import { allPermissions } from "@/constants/AdminPanel.ts";
 
 interface Props {
   id: string;

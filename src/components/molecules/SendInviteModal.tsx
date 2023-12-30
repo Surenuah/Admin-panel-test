@@ -2,7 +2,7 @@ import { Modal as ModalAntd } from "antd";
 import { FC } from "react";
 import { SendInviteForm } from "@/components/molecules/SendInviteForm.tsx";
 import styled from "@emotion/styled";
-import { UsersT, UserT } from "../../types/AdminPanel.ts";
+import { UsersT, UserT } from "@/types/AdminPanel.ts";
 
 interface Props {
   isModalOpen: boolean;

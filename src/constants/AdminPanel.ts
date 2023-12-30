@@ -6,3 +6,6 @@ export const allPermissions = [
   "Аналитика",
   "Акции",
 ];
+
+export const ADMINISTRATOR_PERMISSION = "Администратор";
+export const USER_PERMISSION = "Пользователь";

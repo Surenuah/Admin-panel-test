@@ -1,8 +1,9 @@
 import { Button, notification, Popover } from "antd";
 import { FC, useState } from "react";
 import moreUserCardIcon from "../../assets/common/More_User_Card_Icon.svg";
-import { UserT } from "../../types/AdminPanel.ts";
+import { UserT } from "@/types/AdminPanel.ts";
 import { PopoverActionButton } from "@/components/atoms/PopoverActionButton.tsx";
+import { USER_PERMISSION } from "@/constants/AdminPanel.ts";
 
 interface Props {
   userEmail?: string;
@@ -35,7 +36,7 @@ export const UserActionsPopover: FC<Props> = ({
 
       notification.success({
         message: "Успех",
-        description: `Пользователь с email ${userEmail} успешно удален!`,
+        description: `${USER_PERMISSION} с email ${userEmail} успешно удален!`,
       });
     } catch (err) {
       notification.error({
