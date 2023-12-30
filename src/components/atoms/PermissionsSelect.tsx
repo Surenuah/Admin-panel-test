@@ -1,7 +1,7 @@
 import { Select as SelectAntd } from "antd";
 import styled from "@emotion/styled";
 import { FC, useEffect, useState } from "react";
-import { allPermissions } from "@/constants/AdminPanel.ts";
+import { ALL_PERMISSIONS } from "@/constants/AdminPanel.ts";
 
 interface Props {
   id: string;
@@ -55,7 +55,7 @@ export const PermissionsSelect: FC<Props> = ({ id, value, onChange }) => {
       onChange={(value) => handleSelectChange(value as string[])}
       onClear={handleClear}
     >
-      {allPermissions.map((permission) => (
+      {ALL_PERMISSIONS.map((permission) => (
         <SelectAntd.Option key={permission} value={permission}>
           {permission}
         </SelectAntd.Option>

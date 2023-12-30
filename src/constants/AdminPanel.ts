@@ -1,4 +1,4 @@
-export const allPermissions = [
+export const ALL_PERMISSIONS = [
   "Модерация объявлений",
   "Блог",
   "Тех. Поддержка",
