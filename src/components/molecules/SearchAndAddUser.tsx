@@ -34,7 +34,7 @@ export const SearchAndAddUser: FC<Props> = ({
           onClick={() => setIsModalOpen(true)}
         >
           Добавить пользователя
-        </Button>{" "}
+        </Button>
         <SendInviteModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}

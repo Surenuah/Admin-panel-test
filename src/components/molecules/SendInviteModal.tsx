@@ -3,6 +3,7 @@ import { FC } from "react";
 import { SendInviteForm } from "@/components/molecules/SendInviteForm.tsx";
 import styled from "@emotion/styled";
 import { UsersT, UserT } from "@/types/AdminPanel.ts";
+import { useSearchParams } from "react-router-dom";
 
 interface Props {
   isModalOpen: boolean;
@@ -35,6 +36,10 @@ export const SendInviteModal: FC<Props> = ({
   selectedUser,
   onEditUser,
 }) => {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const userId = id ? +id : null;
+
   return (
     <Modal
       className="flex flex-col items-center justify-center"
@@ -49,6 +54,7 @@ export const SendInviteModal: FC<Props> = ({
         setIsModalOpen={setIsModalOpen}
         selectedUser={selectedUser}
         onEditUser={onEditUser}
+        userId={userId}
       />
     </Modal>
   );

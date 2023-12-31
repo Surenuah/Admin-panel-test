@@ -6,6 +6,6 @@ export type UsersT = {
 };
 
 export type UserT = {
-  email?: string;
+  email: string;
   permissions?: string[];
 };

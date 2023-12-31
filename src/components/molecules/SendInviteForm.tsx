@@ -12,6 +12,7 @@ interface Props {
   setIsModalOpen: (value: boolean) => void;
   selectedUser?: UserT;
   onEditUser: (email: string, permissions: string[]) => void;
+  userId?: number | null;
 }
 
 export const SendInviteForm: FC<Props> = ({
@@ -19,25 +20,21 @@ export const SendInviteForm: FC<Props> = ({
   setIsModalOpen,
   selectedUser,
   onEditUser,
+  userId,
 }) => {
   const formik = useFormik<UsersT>({
     initialValues: {
-      email: selectedUser?.email || "",
-      permissions: selectedUser?.permissions || [],
+      email: userId ? selectedUser?.email || "" : "",
+      permissions: userId ? selectedUser?.permissions || [] : [],
     },
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        if (selectedUser) {
+        if (userId) {
           onEditUser(values.email, values.permissions);
-
-          selectedUser.email = "";
-          selectedUser.permissions = [];
         } else {
           onSendInvite(values);
         }
-
-        formik.resetForm();
       } catch (err) {
         notification.error({
           message: "Ошибка",

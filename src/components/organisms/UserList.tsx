@@ -68,6 +68,7 @@ export const UserList: FC<Props> = ({
               onDeleteUser={deleteUser}
               setIsModalOpen={setIsModalOpen}
               setSelectedUser={setSelectedUser}
+              isModalOpen={isModalOpen}
             />
           );
         })}

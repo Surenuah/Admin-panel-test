@@ -13,6 +13,7 @@ interface Props {
   onDeleteUser: (value?: string) => void;
   setIsModalOpen: (value: boolean) => void;
   setSelectedUser: (value: UserT) => void;
+  isModalOpen: boolean;
 }
 
 export const UserCard: FC<Props> = ({
@@ -21,6 +22,7 @@ export const UserCard: FC<Props> = ({
   onDeleteUser,
   setIsModalOpen,
   setSelectedUser,
+  isModalOpen,
 }) => {
   return (
     <>
@@ -54,11 +56,13 @@ export const UserCard: FC<Props> = ({
             </div>
           </div>
           <UserActionsPopover
+            userId={userIndex + 1}
             userEmail={user?.email}
             onDeleteUser={onDeleteUser}
             userPermissions={user?.permissions}
             setIsModalOpen={setIsModalOpen}
             setSelectedUser={setSelectedUser}
+            isModalOpen={isModalOpen}
           />
         </div>
       </div>
