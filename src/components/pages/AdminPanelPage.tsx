@@ -43,14 +43,14 @@ export const AdminPanelPage = () => {
     );
   };
 
-  const editUser = (newEmail?: string, newPermissions?: string[]) => {
+  const editUser = (editedUser: UserT) => {
     setAddedUsers((prevUsers) => {
       return prevUsers.map((user) => {
         if (user.email === selectedUser?.email) {
           return {
             ...user,
-            email: newEmail || user.email,
-            permissions: newPermissions || user.permissions,
+            email: editedUser.email || user.email,
+            permissions: editedUser.permissions || user.permissions,
           };
         }
 

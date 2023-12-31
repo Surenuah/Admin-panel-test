@@ -11,7 +11,7 @@ interface Props {
   onSendInvite: (values: UsersT) => void;
   setIsModalOpen: (value: boolean) => void;
   selectedUser?: UserT;
-  onEditUser: (email: string, permissions: string[]) => void;
+  onEditUser: (values: UserT) => void;
   userId?: number | null;
 }
 
@@ -31,7 +31,7 @@ export const SendInviteForm: FC<Props> = ({
     onSubmit: (values) => {
       try {
         if (userId) {
-          onEditUser(values.email, values.permissions);
+          onEditUser(values);
         } else {
           onSendInvite(values);
         }

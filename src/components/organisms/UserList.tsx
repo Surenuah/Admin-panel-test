@@ -12,7 +12,7 @@ interface Props {
   deleteUser: (value?: string) => void;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  onEditUser: (email?: string, permissions?: string[]) => void;
+  onEditUser: (value: UserT) => void;
   selectedUser?: UserT;
   setSelectedUser: (value: UserT) => void;
 }

@@ -10,7 +10,7 @@ interface Props {
   setIsModalOpen: (value: boolean) => void;
   onSendInvite: (values: UsersT) => void;
   selectedUser?: UserT;
-  onEditUser: (email: string, permissions: string[]) => void;
+  onEditUser: (values: UserT) => void;
 }
 
 const Modal = styled(ModalAntd)`
