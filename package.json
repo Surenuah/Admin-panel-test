@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.21.1",
-    "twin.macro": "^3.4.0"
+    "twin.macro": "^3.4.0",
+    "yup": "^1.3.3"
   },
   "babelMacros": {
     "twin": {

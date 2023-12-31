@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import Title from "antd/es/typography/Title";
 import { FC } from "react";
 import { UsersT, UserT } from "@/types/AdminPanel.ts";
+import * as Yup from "yup";
 
 interface Props {
   onSendInvite: (values: UsersT) => void;
@@ -48,6 +49,9 @@ export const SendInviteForm: FC<Props> = ({
 
       setIsModalOpen(false);
     },
+    validationSchema: Yup.object().shape({
+      email: Yup.string().required("Поле email не может быть пустым"),
+    }),
   });
 
   return (

@@ -1,4 +1,4 @@
-import { Select as SelectAntd } from "antd";
+import { Checkbox, Select as SelectAntd } from "antd";
 import styled from "@emotion/styled";
 import { FC, useEffect, useState } from "react";
 import { ALL_PERMISSIONS } from "@/constants/AdminPanel.ts";
@@ -11,7 +11,7 @@ interface Props {
 
 const Select = styled(SelectAntd)`
   .ant-select-selector {
-    border: 1px solid #c1c1cb !important;
+    border: 1px solid #c1c1cb;
     border-radius: 10px;
   }
 
@@ -22,19 +22,29 @@ const Select = styled(SelectAntd)`
 
 export const PermissionsSelect: FC<Props> = ({ id, value, onChange }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>(value || []);
+  const isAllSelected = selectedOptions.length === ALL_PERMISSIONS.length;
 
   useEffect(() => {
     setSelectedOptions(value);
   }, [value]);
 
   const handleSelectChange = (selectedValues: string[]) => {
-    setSelectedOptions(selectedValues);
-    onChange(selectedValues);
+    setTimeout(() => {
+      setSelectedOptions(selectedValues);
+      onChange(selectedValues);
+    }, 0);
   };
 
   const handleClear = () => {
     setSelectedOptions([]);
     onChange([]);
+  };
+
+  const handleSelectAll = () => {
+    const allPermissions = ALL_PERMISSIONS.map((permission) => permission);
+    const newSelectedOptions = isAllSelected ? [] : allPermissions;
+    setSelectedOptions(newSelectedOptions);
+    onChange(newSelectedOptions);
   };
 
   return (
@@ -52,12 +62,29 @@ export const PermissionsSelect: FC<Props> = ({ id, value, onChange }) => {
       }
       maxTagCount="responsive"
       showSearch
-      onChange={(value) => handleSelectChange(value as string[])}
+      onChange={(value) => {
+        if (Array.isArray(value) && value.includes("all")) {
+          handleSelectAll();
+        } else {
+          handleSelectChange(value as string[]);
+        }
+      }}
       onClear={handleClear}
     >
+      <SelectAntd.Option key="all" value="all">
+        <Checkbox className="mr-[8px]" checked={isAllSelected}>
+          Все
+        </Checkbox>
+      </SelectAntd.Option>
+
       {ALL_PERMISSIONS.map((permission) => (
         <SelectAntd.Option key={permission} value={permission}>
-          {permission}
+          <Checkbox
+            className="mr-[8px]"
+            checked={selectedOptions.includes(permission)}
+          >
+            {permission}
+          </Checkbox>
         </SelectAntd.Option>
       ))}
     </Select>
