@@ -34,6 +34,8 @@ export const SendInviteForm: FC<Props> = ({
           onEditUser(values);
         } else {
           onSendInvite(values);
+
+          formik.resetForm();
         }
       } catch (err) {
         notification.error({
